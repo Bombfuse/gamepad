@@ -1,0 +1,12 @@
+[package]
+name = "gamepad"
+version = "0.1.0"
+authors = ["Bombfuse <eiffeldud@gmail.com>"]
+edition = "2018"
+description = "A crate for getting gamepad inputs across platforms."
+repository = "https://github.com/Bombfuse/gamepad"
+license = "MIT OR Apache-2.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
