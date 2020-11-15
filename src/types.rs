@@ -47,8 +47,20 @@ impl GamepadState {
         &mut self.buttons
     }
 
-    pub fn joysticks(&self) -> &HashMap<Joystick, JoystickState> { &self.joysticks }
-    pub fn joysticks_mut(&mut self) -> &mut HashMap<Joystick, JoystickState> { &mut self.joysticks }
+    pub fn joystick(&self, joystick: Joystick) -> (i16, i16) {
+        if let Some(joystick) = self.joysticks.get(&joystick) {
+            return joystick.raw_value;
+        }
+
+        (0, 0)
+    }
+
+    pub fn joysticks(&self) -> &HashMap<Joystick, JoystickState> {
+        &self.joysticks
+    }
+    pub fn joysticks_mut(&mut self) -> &mut HashMap<Joystick, JoystickState> {
+        &mut self.joysticks
+    }
 
     pub fn is_pressed(&self, button: Button) -> bool {
         match self.buttons.get(&button) {
@@ -78,16 +90,12 @@ pub struct JoystickState {
 }
 impl JoystickState {
     pub fn new(raw_value: (i16, i16)) -> Self {
-        JoystickState {
-            raw_value,
-        }
+        JoystickState { raw_value }
     }
 }
 impl Default for JoystickState {
     fn default() -> JoystickState {
-        JoystickState {
-            raw_value: (0, 0),
-        }
+        JoystickState { raw_value: (0, 0) }
     }
 }
 
@@ -145,5 +153,5 @@ pub enum Button {
 #[derive(Clone, Debug, Hash, PartialEq, Eq)]
 pub enum Joystick {
     Left,
-    Right
+    Right,
 }

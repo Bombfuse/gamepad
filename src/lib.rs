@@ -9,10 +9,7 @@ use backends::xinput::XInputBackend as Backend;
 #[cfg(target_arch = "wasm32")]
 use backends::wasm::WasmBackend as Backend;
 
-#[cfg(not(any(
-    target_arch = "wasm32",
-    target_os = "windows"
-)))]
+#[cfg(not(any(target_arch = "wasm32", target_os = "windows")))]
 use backends::dummy::DummyBackend as Backend;
 
 pub struct GamepadEngine {
