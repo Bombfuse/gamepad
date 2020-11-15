@@ -15,7 +15,7 @@ pub fn main() {
                 }
             }
 
-            for (key, joystick) in gamepad.joysticks() {
+            for (_, joystick) in gamepad.joysticks() {
                 println!("{:?}", joystick);
             }
         }
