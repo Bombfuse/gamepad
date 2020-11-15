@@ -47,7 +47,15 @@ impl GamepadState {
         &mut self.buttons
     }
 
-    pub fn joystick(&self, joystick: Joystick) -> (i16, i16) {
+    pub fn joystick(&self, joystick: Joystick) -> (f32, f32) {
+        if let Some(joystick) = self.joysticks.get(&joystick) {
+            return joystick.normalized_value;
+        }
+
+        (0.0, 0.0)
+    }
+
+    pub fn joystick_raw(&self, joystick: Joystick) -> (i16, i16) {
         if let Some(joystick) = self.joysticks.get(&joystick) {
             return joystick.raw_value;
         }
@@ -87,15 +95,16 @@ impl GamepadState {
 #[derive(Clone, Debug)]
 pub struct JoystickState {
     pub(crate) raw_value: (i16, i16),
+    pub(crate) normalized_value: (f32, f32),
 }
 impl JoystickState {
-    pub fn new(raw_value: (i16, i16)) -> Self {
-        JoystickState { raw_value }
+    pub fn new(raw_value: (i16, i16), normalized_value: (f32, f32)) -> Self {
+        JoystickState { raw_value, normalized_value }
     }
 }
 impl Default for JoystickState {
     fn default() -> JoystickState {
-        JoystickState { raw_value: (0, 0) }
+        JoystickState { raw_value: (0, 0), normalized_value: (0.0, 0.0) }
     }
 }
 

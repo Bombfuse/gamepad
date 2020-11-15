@@ -131,8 +131,8 @@ impl XInputState {
     pub fn to_gamepad(self) -> GamepadState {
         let mut gamepad = GamepadState::new();
         let joysticks = &mut gamepad.joysticks;
-        joysticks.insert(Joystick::Left, JoystickState::new(self.left_stick_raw()));
-        joysticks.insert(Joystick::Right, JoystickState::new(self.right_stick_raw()));
+        joysticks.insert(Joystick::Left, JoystickState::new(self.left_stick_raw(), self.left_stick_normalized()));
+        joysticks.insert(Joystick::Right, JoystickState::new(self.right_stick_raw(), self.right_stick_normalized()));
 
         let buttons = &mut gamepad.buttons;
         buttons.insert(Button::DPadNorth, ButtonState::new(self.arrow_up(), false));
