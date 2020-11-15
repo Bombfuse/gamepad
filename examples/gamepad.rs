@@ -14,6 +14,10 @@ pub fn main() {
                     println!("Just Pressed: {:?}", key);
                 }
             }
+
+            for (key, joystick) in gamepad.joysticks() {
+                println!("{:?}", joystick);
+            }
         }
 
         std::thread::sleep(Duration::from_millis(16));

@@ -29,11 +29,13 @@ pub enum GamepadEvent {
 #[derive(Clone, Debug)]
 pub struct GamepadState {
     pub(crate) buttons: HashMap<Button, ButtonState>,
+    pub(crate) joysticks: HashMap<Joystick, JoystickState>,
 }
 impl GamepadState {
     pub fn new() -> Self {
         GamepadState {
             buttons: HashMap::new(),
+            joysticks: HashMap::new(),
         }
     }
 
@@ -44,6 +46,9 @@ impl GamepadState {
     pub fn buttons_mut(&mut self) -> &mut HashMap<Button, ButtonState> {
         &mut self.buttons
     }
+
+    pub fn joysticks(&self) -> &HashMap<Joystick, JoystickState> { &self.joysticks }
+    pub fn joysticks_mut(&mut self) -> &mut HashMap<Joystick, JoystickState> { &mut self.joysticks }
 
     pub fn is_pressed(&self, button: Button) -> bool {
         match self.buttons.get(&button) {
@@ -63,6 +68,25 @@ impl GamepadState {
         match self.buttons.get(&button) {
             Some(button_state) => !button_state.is_pressed && button_state.was_pressed,
             None => false,
+        }
+    }
+}
+
+#[derive(Clone, Debug)]
+pub struct JoystickState {
+    pub(crate) raw_value: (i16, i16),
+}
+impl JoystickState {
+    pub fn new(raw_value: (i16, i16)) -> Self {
+        JoystickState {
+            raw_value,
+        }
+    }
+}
+impl Default for JoystickState {
+    fn default() -> JoystickState {
+        JoystickState {
+            raw_value: (0, 0),
         }
     }
 }
@@ -116,4 +140,10 @@ pub enum Button {
     Menu,
     Select,
     Start,
+}
+
+#[derive(Clone, Debug, Hash, PartialEq, Eq)]
+pub enum Joystick {
+    Left,
+    Right
 }

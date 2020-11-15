@@ -57,10 +57,10 @@ impl GamepadEngineBackend for XInputBackend {
         for i in 0..self.gamepads.len() {
             if let Some(prev_gamepad) = self.gamepads.get(i) {
                 if let Some(new_gamepad) = gamepads.get_mut(i) {
-                    for (key, button_state) in prev_gamepad.buttons() {
+                    for (button, button_state) in prev_gamepad.buttons() {
                         let state = new_gamepad
                             .buttons
-                            .entry(key.clone())
+                            .entry(button.clone())
                             .or_insert(ButtonState::default());
                         state.was_pressed = button_state.is_pressed;
                     }
@@ -130,6 +130,10 @@ impl ::std::fmt::Debug for XInputState {
 impl XInputState {
     pub fn to_gamepad(self) -> GamepadState {
         let mut gamepad = GamepadState::new();
+        let joysticks = &mut gamepad.joysticks;
+        joysticks.insert(Joystick::Left, JoystickState::new(self.left_stick_raw()));
+        joysticks.insert(Joystick::Right, JoystickState::new(self.right_stick_raw()));
+
         let buttons = &mut gamepad.buttons;
         buttons.insert(Button::DPadNorth, ButtonState::new(self.arrow_up(), false));
         buttons.insert(
