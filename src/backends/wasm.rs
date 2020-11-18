@@ -1,16 +1,17 @@
 
-use crate::backends::{GamepadEngineBackend};
+use crate::backends::GamepadEngineBackend;
+use crate::types::*;
 
-extern "C" {
-    fn initiate_gamepad_update();
-}
+// extern "C" {
+//     fn initiate_gamepad_update();
+// }
   
-#[no_mangle]
-extern "C" fn update_gamepads() {
-}
+// #[no_mangle]
+// extern "C" fn update_gamepads() {
+// }
 
 
-pub struct WasmBackend {
+pub(crate) struct WasmBackend {
     gamepads: Vec<GamepadState>,
 }
 impl WasmBackend {
