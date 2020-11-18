@@ -1,12 +1,12 @@
 # Gamepad
-## Cross platform gamepad solution
+The cross platform solution to getting gamepad input.
 
-Windows - IN PROGRESS
+## Usable
+------------------
+Windows
 
-MacOS - TODO
+Planned
+------------------
+-----------------
 
-Linux - TODO
-
-HTML5/WASM - TODO
-
-Android - TODO
+MacOS, Linux, RaspberryPi, HTML5/WASM, Android
