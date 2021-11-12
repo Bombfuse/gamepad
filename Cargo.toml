@@ -11,5 +11,8 @@ license = "MIT OR Apache-2.0"
 
 [dependencies]
 
+[target.'cfg(not(windows))'.dependencies]
+gilrs = "0.8.1"
+
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3.*", features = [ "xinput", "winerror" ] }

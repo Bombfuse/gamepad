@@ -6,7 +6,7 @@ pub fn main() {
     let mut engine = GamepadEngine::new();
 
     loop {
-        engine.update();
+        engine.update().unwrap();
 
         for gamepad in engine.gamepads() {
             for (key, button) in gamepad.buttons() {

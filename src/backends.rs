@@ -1,11 +1,8 @@
 #[cfg(target_os = "windows")]
 pub(crate) mod xinput;
 
-#[cfg(target_arch = "wasm32")]
-pub(crate) mod wasm;
-
-#[cfg(not(target_os = "windows"))]
-pub(crate) mod dummy;
+#[cfg(not(any(target_os = "windows")))]
+pub(crate) mod gilrs;
 
 use crate::types::*;
 

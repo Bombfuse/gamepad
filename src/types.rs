@@ -99,12 +99,18 @@ pub struct JoystickState {
 }
 impl JoystickState {
     pub fn new(raw_value: (i16, i16), normalized_value: (f32, f32)) -> Self {
-        JoystickState { raw_value, normalized_value }
+        JoystickState {
+            raw_value,
+            normalized_value,
+        }
     }
 }
 impl Default for JoystickState {
     fn default() -> JoystickState {
-        JoystickState { raw_value: (0, 0), normalized_value: (0.0, 0.0) }
+        JoystickState {
+            raw_value: (0, 0),
+            normalized_value: (0.0, 0.0),
+        }
     }
 }
 
