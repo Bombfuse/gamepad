@@ -35,3 +35,6 @@ impl GamepadEngine {
         self.backend.gamepads_mut()
     }
 }
+
+unsafe impl Send for GamepadEngine {}
+unsafe impl Sync for GamepadEngine {}
