@@ -11,7 +11,7 @@ license = "MIT OR Apache-2.0"
 
 [dependencies]
 
-[target.'cfg(not(windows))'.dependencies]
+[target.'cfg(not(any(windows, android)))'.dependencies]
 gilrs = "0.8.1"
 
 [target.'cfg(windows)'.dependencies]

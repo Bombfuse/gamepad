@@ -1,8 +1,12 @@
 #[cfg(target_os = "windows")]
 pub(crate) mod xinput;
 
-#[cfg(not(any(target_os = "windows")))]
+#[cfg(not(any(target_os = "windows", target_os="android")))]
 pub(crate) mod gilrs;
+
+#[cfg(any(target_os="android"))]
+pub(crate) mod dummy;
+
 
 use crate::types::*;
 

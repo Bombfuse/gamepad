@@ -6,8 +6,11 @@ pub use types::*;
 #[cfg(target_os = "windows")]
 use backends::xinput::XInputBackend as Backend;
 
-#[cfg(not(any(target_os = "windows")))]
+#[cfg(not(any(target_os = "windows", target_os="android")))]
 use backends::gilrs::GilrsBackend as Backend;
+
+#[cfg(any(target_os="android"))]
+use backends::dummy::DummyBackend as Backend;
 
 pub struct GamepadEngine {
     backend: Box<dyn crate::backends::GamepadEngineBackend>,
