@@ -1,6 +1,6 @@
 [package]
 name = "gamepad"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Bombfuse <eiffeldud@gmail.com>"]
 edition = "2018"
 description = "A cross platform gamepad solution."
