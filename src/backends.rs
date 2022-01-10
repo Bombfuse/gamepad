@@ -1,5 +1,5 @@
 #[cfg(target_os = "windows")]
-pub(crate) mod xinput;
+pub(crate) mod gilrs;
 
 #[cfg(not(any(target_os = "windows", target_os="android")))]
 pub(crate) mod gilrs;

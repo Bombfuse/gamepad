@@ -4,7 +4,7 @@ mod types;
 pub use types::*;
 
 #[cfg(target_os = "windows")]
-use backends::xinput::XInputBackend as Backend;
+use backends::gilrs::GilrsBackend as Backend;
 
 #[cfg(not(any(target_os = "windows", target_os="android")))]
 use backends::gilrs::GilrsBackend as Backend;
