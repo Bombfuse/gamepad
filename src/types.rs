@@ -144,7 +144,7 @@ impl Default for ButtonState {
     }
 }
 
-#[derive(Clone, Debug, Hash, PartialEq, Eq)]
+#[derive(Clone, Debug, Hash, Copy, PartialEq, Eq)]
 pub enum Button {
     DPadNorth,
     DPadSouth,
