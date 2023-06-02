@@ -1,12 +1,8 @@
-#[cfg(target_os = "windows")]
+#[cfg(not(any(target_family = "wasm", target_os = "android")))]
 pub(crate) mod gilrs;
 
-#[cfg(not(any(target_os = "windows", target_os="android")))]
-pub(crate) mod gilrs;
-
-#[cfg(any(target_os="android"))]
+#[cfg(any(target_family = "wasm", target_os = "android"))]
 pub(crate) mod dummy;
-
 
 use crate::types::*;
 

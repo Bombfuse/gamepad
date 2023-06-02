@@ -3,13 +3,10 @@ mod types;
 
 pub use types::*;
 
-#[cfg(target_os = "windows")]
+#[cfg(not(any(target_family = "wasm", target_os = "android")))]
 use backends::gilrs::GilrsBackend as Backend;
 
-#[cfg(not(any(target_os = "windows", target_os="android")))]
-use backends::gilrs::GilrsBackend as Backend;
-
-#[cfg(any(target_os="android"))]
+#[cfg(any(target_family = "wasm", target_os = "android"))]
 use backends::dummy::DummyBackend as Backend;
 
 pub struct GamepadEngine {
